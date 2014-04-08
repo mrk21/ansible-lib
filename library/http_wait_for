@@ -33,6 +33,7 @@ class HTTPWaitFor:
       argument_spec = dict(
         host     = dict(default='127.0.0.1', type='str'),
         port     = dict(type='int'),
+        path     = dict(default='/', type='str'),
         ssl      = dict(default='no', type='bool'),
         status   = dict(default=200, type='int'),
         interval = dict(default=3  , type='int'),
@@ -52,7 +53,7 @@ class HTTPWaitFor:
     while True:
       try:
         connection = self.HTTPClient(self.module).connect()
-        connection.request('GET','/')
+        connection.request('GET', params['path'])
         response = connection.getresponse()
         connection.close()
         

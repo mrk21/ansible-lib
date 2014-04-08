@@ -4,4 +4,4 @@ unit:
 
 .PHONY: integration
 integration:
-	ANSIBLE_LIBRARY=/usr/share/ansible:../library ansible-playbook -i $@/inventory.ini $@/site.yml
+	ANSIBLE_LIBRARY=/usr/share/ansible:../library ansible-playbook -v -i $@/inventory.ini $@/site.yml

@@ -4,3 +4,6 @@
   
 - name: HTTPS connection
   http_wait_for: host=www.google.co.jp ssl=yes
+  
+- name: With path
+  http_wait_for: host=www.ansible.com path='/home'
