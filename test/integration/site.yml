@@ -1,0 +1,5 @@
+---
+- hosts: all
+  roles:
+    - role: test_http_wait_for
+      tags: test_http_wait_for

@@ -1,0 +1,74 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import httplib
+import socket
+import time
+import datetime
+from ansible.module_utils.basic import *
+
+class HTTPWaitFor:
+  class HTTPClient:
+    def __init__(self, module):
+      self.params = module.params
+    
+    def connect(self):
+      return httplib.HTTPConnection(self.params['host'], self.params['port'], True)
+  
+  class Progress:
+    def __init__(self):
+      self.start = datetime.datetime.now()
+    
+    def elapsed(self):
+      return (datetime.datetime.now() - self.start).seconds
+    
+    def wait(self, value):
+      time.sleep(value)
+  
+  def __init__(self, AnsibleModule = AnsibleModule, HTTPClient = HTTPClient, Progress = Progress):
+    self.module = AnsibleModule(
+      argument_spec = dict(
+        host     = dict(default='127.0.0.1', type='str'),
+        port     = dict(default=80 , type='int'),
+        status   = dict(default=200, type='int'),
+        interval = dict(default=3  , type='int'),
+        timeout  = dict(default=60 , type='int'),
+      )
+    )
+    self.HTTPClient = HTTPClient
+    self.Progress = Progress
+  
+  def execute(self):
+    progress = self.Progress()
+    params = self.module.params
+    
+    while True:
+      try:
+        connection = self.HTTPClient(self.module).connect()
+        connection.request('GET','/')
+        response = connection.getresponse()
+        connection.close()
+        
+        if response.status == params['status']:
+          self.module.exit_json(status = 1, elapsed = progress.elapsed())
+          break
+        
+      except httplib.BadStatusLine:
+        connection.close()
+        self.module.fail_json(msg = 'Non HTTP server!!', status = 3, elapsed = progress.elapsed())
+        break
+        
+      except socket.error:
+        connection.close()
+      
+      elapsed = progress.elapsed()
+      
+      if elapsed >= params['timeout']:
+        self.module.fail_json(msg = 'Timeout!! sec %d' % elapsed, status = 2, elapsed = elapsed)
+        break
+      else:
+        progress.wait(params['interval'])
+        continue
+
+if __name__ == '__main__':
+  HTTPWaitFor().execute()
