@@ -7,7 +7,11 @@ class AnsibleModuleMock:
     self.test_data__ = {}
     
     for k,v in argument_spec.items():
-      self.params[k] = v['default']
+      if 'default' in v:
+        if v['type'] == 'bool':
+          self.params[k] = True if v['default'] == 'yes' else False
+        else:
+          self.params[k] = v['default']
   
   def exit_json(self, *args, **kwargs):
     callback = self.test_data__['callback'] or {}

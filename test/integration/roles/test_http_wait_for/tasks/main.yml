@@ -1,2 +1,6 @@
 ---
-- http_wait_for: host=b.hatena.ne.jp
+- name: HTTP connection
+  http_wait_for: host=b.hatena.ne.jp
+  
+- name: HTTPS connection
+  http_wait_for: host=www.google.co.jp ssl=yes
