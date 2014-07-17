@@ -51,7 +51,7 @@ Manage the Firefox Add-ons.
 | parameter | required | default | choices | comments |
 | --------- | -------- | ------- | ------- | ---------|
 | name | yes | | | Extension name |
-| state | no | present | present, adsent | Install or Uninstall |
+| state | no | present | present, absent | Install or Uninstall |
 | base\_dir | no | | | The profiles.ini path |
 | profile | no | | | Target profile name |
 | firefox | no | | | The Firefox command path |
