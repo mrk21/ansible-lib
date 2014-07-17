@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import pipes
 from ansible.module_utils.basic import *
 
 class Firebrew:
@@ -12,15 +13,28 @@ class Firebrew:
         self.module = AnsibleModule(
             argument_spec = dict(
                 state = dict(type='str', default='present', choices=['present', 'absent']),
-                name = dict(type='str', required=True)
+                name = dict(type='str', required=True),
+                base_dir = dict(type='str'),
+                profile = dict(type='str'),
+                firefox = dict(type='str')
             )
         )
     
+    def build_command(self):
+        params = self.module.params
+        command = [
+            self.module.get_bin_path('firebrew'),
+            {'present': 'install', 'absent': 'uninstall'}[params['state']],
+            pipes.quote(params['name'])
+        ]
+        for opt in ['base_dir','profile','firefox']:
+            if opt in params and params[opt] != None and params[opt].strip() != '':
+                command.append('--%s=%s' % (opt.replace('_','-'), pipes.quote(params[opt])))
+        
+        return ' '.join(command)
+    
     def execute(self):
-        firebrew = self.module.get_bin_path('firebrew')
-        command = {'present': 'install', 'absent': 'uninstall'}[self.module.params['state']]
-        name = self.module.params['name']
-        (rc,out,err) = self.module.run_command('%s %s %s' % (firebrew, command, name))
+        (rc,out,err) = self.module.run_command(self.build_command())
         
         if rc == self.STATUS_SUCCESS:
             self.module.exit_json(changed=True)
