@@ -1,0 +1,16 @@
+---
+- name: uninstall
+  firebrew: name=Vimperator state=absent
+  
+- name: reuninstall
+  firebrew: name=Vimperator state=absent
+  register: result
+  failed_when: result.changed == True
+  
+- name: install
+  firebrew: name=Vimperator state=present
+  
+- name: reinstall
+  firebrew: name=Vimperator state=present
+  register: result
+  failed_when: result.changed == True

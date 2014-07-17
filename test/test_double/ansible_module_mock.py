@@ -24,3 +24,12 @@ class AnsibleModuleMock:
         callback = callback['fail']
         if callback:
             callback(*args, **kwargs)
+    
+    def get_bin_path(self, arg, required=False, opt_dirs=[]):
+        return arg
+     
+    def run_command(self, args, check_rc=False, close_fds=False, executable=None, data=None, binary_data=False, path_prefix=None, cwd=None, use_unsafe_shell=False):
+        callback = self.test_data__['command']
+        if callback:
+            return callback(args)
+        return (0,'','')

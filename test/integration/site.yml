@@ -3,3 +3,6 @@
   roles:
     - role: test_http_wait_for
       tags: test_http_wait_for
+    
+    - role: test_firebrew
+      tags: test_firebrew
