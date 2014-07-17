@@ -46,6 +46,8 @@ Install Jenkins Git Plugin:
 
 Manage the Firefox Add-ons.
 
+*see: [mrk21/firebrew](https://github.com/mrk21/firebrew "mrk21/firebrew")*
+
 ### Options
 
 | parameter | required | default | choices | comments |
