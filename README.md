@@ -16,10 +16,10 @@ $ git clone https://github.com/mrk21/ansible-lib.git
 
 ## Usage
 
-* [http_wait_for](#http_wait_for)
-* [firebrew](#firebrew)
+* [http_wait_for](#-http_wait_for)
+* [firebrew](#-firebrew)
 
-### <a name="http_wait_for"> http\_wait\_for
+### http\_wait\_for
 
 Waits the HTTP request for a condition before continuing.
 
@@ -55,7 +55,7 @@ Install Jenkins Git Plugin:
 - http_wait_for: port=8080 timeout=300
 ```
 
-### <a name="firebrew"> firebrew
+### firebrew
 
 Manage the Firefox Add-ons.
 
