@@ -2,7 +2,7 @@ import os
 import unittest
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../library'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from firebrew import *
 from test_double.ansible_module_mock import *
