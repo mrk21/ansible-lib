@@ -16,8 +16,8 @@ $ git clone https://github.com/mrk21/ansible-lib.git
 
 ## Usage
 
-* [http_wait_for](#-http_wait_for)
-* [firebrew](#-firebrew)
+* [http_wait_for](#http_wait_for)
+* [firebrew](#firebrew)
 
 ### http\_wait\_for
 
