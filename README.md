@@ -3,14 +3,27 @@ ansible-lib
 
 Ansible module libraries.
 
-Modules
-==========
+## Installation
 
-## http\_wait\_for
+Clone this repository into your project's `library` directory:
+
+```bash
+$ cd /path/to/your-project/
+$ mkdir -p library/
+$ cd library/
+$ git clone https://github.com/mrk21/ansible-lib.git
+```
+
+## Usage
+
+* [http_wait_for](#http_wait_for)
+* [firebrew](#firebrew)
+
+### <a name="http_wait_for"> http\_wait\_for
 
 Waits the HTTP request for a condition before continuing.
 
-### Options
+#### Options
 
 | parameter | required | default | choices | comments |
 | --------- | -------- | ------- | ------- | ---------|
@@ -22,7 +35,7 @@ Waits the HTTP request for a condition before continuing.
 | interval | no | 3 | | Access interval (sec) |
 | timeout | no | 60 | | Time out (sec) |
 
-### Examples
+#### Examples
 
 Install Jenkins Git Plugin:
 
@@ -42,13 +55,13 @@ Install Jenkins Git Plugin:
 - http_wait_for: port=8080 timeout=300
 ```
 
-## firebrew
+### <a name="firebrew"> firebrew
 
 Manage the Firefox Add-ons.
 
 *see: [mrk21/firebrew](https://github.com/mrk21/firebrew "mrk21/firebrew")*
 
-### Options
+#### Options
 
 | parameter | required | default | choices | comments |
 | --------- | -------- | ------- | ------- | ---------|
@@ -58,7 +71,7 @@ Manage the Firefox Add-ons.
 | profile | no | | | Target profile name |
 | firefox | no | | | The Firefox command path |
 
-### Examples
+#### Examples
 
 ```yaml
 ---
