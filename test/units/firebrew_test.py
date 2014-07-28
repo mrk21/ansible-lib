@@ -2,8 +2,6 @@ import os
 import unittest
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from firebrew import *
 from test_double.ansible_module_mock import *
 
@@ -113,7 +111,3 @@ class FirebrewTest(unittest.TestCase):
             return (Firebrew.STATUS_FAILURE,'','firebrew error message')
         
         self.assert_execute({'state': 'absent', 'name': 'Vimperator'},{'fail': fail, 'command': command})
-
-
-suite = unittest.TestLoader().loadTestsFromTestCase(FirebrewTest)
-unittest.TextTestRunner(verbosity=2).run(suite)

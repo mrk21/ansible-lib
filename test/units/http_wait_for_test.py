@@ -2,8 +2,6 @@ import os
 import unittest
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from http_wait_for import *
 from test_double.ansible_module_mock import *
 from test_double.http_client_mock import *
@@ -88,6 +86,3 @@ class HTTPWaitForTest(unittest.TestCase):
         }
         
         self.instance.execute()
-
-suite = unittest.TestLoader().loadTestsFromTestCase(HTTPWaitForTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
