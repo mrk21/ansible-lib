@@ -19,7 +19,7 @@ class FirebrewTest(unittest.TestCase):
         }
         self.assertEquals(self.instance.build_command(), 'firebrew install name')
     
-    def test_build_command__With_options(self):
+    def test_build_command_with_options(self):
         self.instance.module.params = {
             'state': 'absent',
             'name': 'extension name',
@@ -52,7 +52,7 @@ class FirebrewTest(unittest.TestCase):
         self.assertEqual(called['exit'], 'exit' in callbacks)
         self.assertEqual(called['fail'], 'fail' in callbacks)
     
-    def test_execute__When_the_state_was_present_and_the_target_extension_not_existed(self):
+    def test_execute_should_return_changed_status_when_state_was_present_and_target_extension_not_existed(self):
         def exit(*args, **kwargs):
             self.assertEqual(kwargs['changed'], True)
         
@@ -62,7 +62,7 @@ class FirebrewTest(unittest.TestCase):
         
         self.assert_execute({'state': 'present', 'name': 'Vimperator'},{'exit': exit, 'command': command})
     
-    def test_execute__When_the_state_was_present_and_the_target_extension_was_already_installed(self):
+    def test_execute_should_return_ok_status_when_state_was_present_and_target_extension_was_already_installed(self):
         def exit(*args, **kwargs):
             self.assertEqual(kwargs['changed'], False)
         
@@ -72,7 +72,7 @@ class FirebrewTest(unittest.TestCase):
         
         self.assert_execute({'state': 'present', 'name': 'Vimperator'},{'exit': exit, 'command': command})
     
-    def test_execute__When_the_state_was_present_and_the_command_was_failed(self):
+    def test_execute_should_fail_when_state_was_present_and_command_was_failed(self):
         def fail(*args, **kwargs):
             self.assertEqual(kwargs['msg'], 'firebrew error message')
         
@@ -82,7 +82,7 @@ class FirebrewTest(unittest.TestCase):
         
         self.assert_execute({'state': 'present', 'name': 'Vimperator'},{'fail': fail, 'command': command})
     
-    def test_execute__When_the_state_was_absent_and_the_target_extension_existed(self):
+    def test_execute_should_return_changed_status_when_state_was_absent_and_target_extension_existed(self):
         def exit(*args, **kwargs):
             self.assertEqual(kwargs['changed'], True)
         
@@ -92,7 +92,7 @@ class FirebrewTest(unittest.TestCase):
         
         self.assert_execute({'state': 'absent', 'name': 'Vimperator'},{'exit': exit, 'command': command})
     
-    def test_execute__When_the_state_was_absent_and_the_target_extension_not_existed(self):
+    def test_execute_should_return_ok_status_when_state_was_absent_and_target_extension_not_existed(self):
         def exit(*args, **kwargs):
             self.assertEqual(kwargs['changed'], False)
         
@@ -102,7 +102,7 @@ class FirebrewTest(unittest.TestCase):
         
         self.assert_execute({'state': 'absent', 'name': 'Vimperator'},{'exit': exit, 'command': command})
     
-    def test_execute__When_the_state_was_absent_and_the_command_was_failed(self):
+    def test_execute_should_fail_when_state_was_absent_and_command_was_failed(self):
         def fail(*args, **kwargs):
             self.assertEqual(kwargs['msg'], 'firebrew error message')
         

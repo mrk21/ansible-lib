@@ -31,7 +31,7 @@ class HTTPWaitForTest(unittest.TestCase):
         self.instance.module.params['timeout'] = self.TIMEOUT
         self.instance.module.params['interval'] = self.INTERVAL
     
-    def test_The_execute_method_exit_when_the_HTTP_status_is_ok(self):
+    def test_execute_should_exit_when_http_status_is_ok(self):
         def callback(*args, **kwargs):
             self.assertEqual(kwargs['status'], self.RESULT_OK_STATUS)
             self.assertEqual(kwargs['elapsed'], 0)
@@ -45,7 +45,7 @@ class HTTPWaitForTest(unittest.TestCase):
         
         self.instance.execute()
     
-    def test_The_execute_method_fail_when_the_HTTP_status_is_not_ok(self):
+    def test_execute_should_fail_when_http_status_is_not_ok(self):
         def callback(*args, **kwargs):
             self.assertEqual(kwargs['status'], self.RESULT_TIMEOUT_STATUS)
             self.assertEqual(kwargs['elapsed'], self.TIMEOUT)
@@ -59,7 +59,7 @@ class HTTPWaitForTest(unittest.TestCase):
         
         self.instance.execute()
     
-    def test_The_execute_method_fail_when_not_connected(self):
+    def test_execute_should_fail_when_not_connected(self):
         def callback(*args, **kwargs):
             self.assertEqual(kwargs['status'], self.RESULT_TIMEOUT_STATUS)
             self.assertEqual(kwargs['elapsed'], self.TIMEOUT)
@@ -73,7 +73,7 @@ class HTTPWaitForTest(unittest.TestCase):
         
         self.instance.execute()
     
-    def test_The_execute_method_fail_when_the_connected_server_is_non_HTTP(self):
+    def test_execute_should_fail_when_connected_server_is_non_http(self):
         def callback(*args, **kwargs):
             self.assertEqual(kwargs['status'], self.RESULT_NON_HTTP_STATUS)
             self.assertEqual(kwargs['elapsed'], 0)
