@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import pipes
 from ansible.module_utils.basic import *
 
-class Firebrew:
+class Firebrew(object):
     STATUS_SUCCESS = 0
     STATUS_FAILURE = 1
     STATUS_NOT_CHANGED = 7

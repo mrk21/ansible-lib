@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import httplib
 import socket
 import time
 import datetime
 from ansible.module_utils.basic import *
 
-class HTTPWaitFor:
-    class HTTPClient:
+class HTTPWaitFor(object):
+    class HTTPClient(object):
         def __init__(self, module):
             self.params = module.params
         
@@ -18,7 +17,7 @@ class HTTPWaitFor:
             else:
                 return httplib.HTTPConnection(self.params['host'], self.params['port'], True)
     
-    class Progress:
+    class Progress(object):
         def __init__(self):
             self.start = datetime.datetime.now()
         

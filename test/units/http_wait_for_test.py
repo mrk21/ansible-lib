@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import unittest
 import sys
@@ -6,7 +7,7 @@ from http_wait_for import *
 from test_double.ansible_module_mock import *
 from test_double.http_client_mock import *
 
-class ProgressMock:
+class ProgressMock(object):
     def __init__(self):
         self.seconds = 0
     

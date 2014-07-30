@@ -1,14 +1,15 @@
+# -*- coding: utf-8 -*-
 import httplib
 import socket
 from test_double.ansible_module_mock import *
 
-class HTTPClientMock:
-    class HTTPResponseMock:
+class HTTPClientMock(object):
+    class HTTPResponseMock(object):
         def __init__(self, params):
             self.params = params
             self.status = self.params['status']
     
-    class HTTPConnectionMock:
+    class HTTPConnectionMock(object):
         def __init__(self, params):
             self.params = params
         
