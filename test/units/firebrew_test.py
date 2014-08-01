@@ -3,7 +3,7 @@ import os
 import unittest
 import sys
 
-from firebrew import *
+from ansible_lib.firebrew import *
 from test_double.ansible_module_mock import *
 
 class FirebrewTest(unittest.TestCase):

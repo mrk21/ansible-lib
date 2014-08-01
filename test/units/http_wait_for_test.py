@@ -3,7 +3,7 @@ import os
 import unittest
 import sys
 
-from http_wait_for import *
+from ansible_lib.http_wait_for import *
 from test_double.ansible_module_mock import *
 from test_double.http_client_mock import *
 
