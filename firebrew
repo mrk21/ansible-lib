@@ -12,7 +12,7 @@ from ansible.module_utils.basic import *
 class Firebrew(object):
     STATUS_SUCCESS = 0
     STATUS_FAILURE = 1
-    STATUS_NOT_CHANGED = 7
+    STATUS_NOT_CHANGED = 2
     
     def __init__(self, AnsibleModule = AnsibleModule):
         self.module = AnsibleModule(
